@@ -13,7 +13,7 @@ Useful when you have to initialize deep data structures in a fluent way.
 
 Because I don't know any better solution in Java, you need to provide both accessor (getter and setter) methods for NullSafeInitializer to work properly:
 ```java
-NullSafeInitializer<A> initializer = NullSafeInitializer.of(a);
+NullSafeInitializer <A> initializer = NullSafeInitializer.of(a);
 B bAfterInitialization = initializer.initIfNullAndGet(A::b, A::b, B::new).get();
 ```
 Two versions of initialization methods exist:
