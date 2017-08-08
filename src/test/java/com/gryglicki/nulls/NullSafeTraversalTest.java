@@ -15,7 +15,6 @@ import static org.junit.Assert.assertSame;
  * @since 11/06/2017
  */
 public class NullSafeTraversalTest {
-    /** Test **/
     @Test
     public void shouldReturnEmptyForNullStartingObject()
     {
@@ -26,7 +25,6 @@ public class NullSafeTraversalTest {
         assertFalse(result.isPresent());
     }
 
-    /** Test **/
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionForNullMapper()
     {
@@ -36,7 +34,6 @@ public class NullSafeTraversalTest {
         //Then - Exception
     }
 
-    /** Test **/
     @Test
     public void shouldReturnEmptyForNullTraversedReference()
     {
@@ -48,7 +45,6 @@ public class NullSafeTraversalTest {
         assertFalse(result.isPresent());
     }
 
-    /** Test **/
     @Test
     public void shouldReturnValueForTraversedReference()
     {
@@ -61,7 +57,6 @@ public class NullSafeTraversalTest {
         assertSame(expectedResult, result.get());
     }
 
-    /** Test **/
     @Test
     public void shouldReturnValueForDeepTraversedReference()
     {
@@ -75,22 +70,19 @@ public class NullSafeTraversalTest {
         //Then
         assertSame(expectedResult, result.get());
     }
+}
 
-    /**
-     * Class used only for this test
-     */
-    private static class TestClass
+class TestClass
+{
+    public TestClass reference;
+
+    public TestClass(TestClass reference)
     {
-        public TestClass reference;
+        this.reference = reference;
+    }
 
-        public TestClass(TestClass reference)
-        {
-            this.reference = reference;
-        }
-
-        public TestClass getReference()
-        {
-            return reference;
-        }
+    public TestClass getReference()
+    {
+        return reference;
     }
 }
