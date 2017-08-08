@@ -3,7 +3,7 @@ package com.gryglicki.nulls;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static com.gryglicki.nulls.NullTraversalWithUnlimitedDepth.nullSafeTraverseWithUnlimitedDepth;
+import static com.gryglicki.nulls.NullSafeTraversalWithUnlimitedDepth.nullSafeTraverseWithUnlimitedDepth;
 
 /**
  * Allows to extract data from deep structures without worrying of null intermediates.
@@ -12,7 +12,7 @@ import static com.gryglicki.nulls.NullTraversalWithUnlimitedDepth.nullSafeTraver
  * @author Michał Gryglicki
  * @since 11/06/2017
  */
-public class NullTraversal {
+public class NullSafeTraversal {
 
     /**
      * Performs null safe and type safe traverse of structure properties

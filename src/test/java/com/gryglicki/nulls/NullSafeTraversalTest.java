@@ -4,17 +4,17 @@ import org.junit.Test;
 
 import java.util.Optional;
 
-import static com.gryglicki.nulls.NullTraversal.nullSafeTraverse;
+import static com.gryglicki.nulls.NullSafeTraversal.nullSafeTraverse;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 
 /**
- * Tests for {@link NullTraversal}
+ * Tests for {@link NullSafeTraversal}
  *
  * @author Michał Gryglicki
  * @since 11/06/2017
  */
-public class NullTraversalTest {
+public class NullSafeTraversalTest {
     /** Test **/
     @Test
     public void shouldReturnEmptyForNullStartingObject()
