@@ -40,5 +40,9 @@ public class NullSafeTraversal {
         return nullSafeTraverseWithUnlimitedDepth(startingStructure, extractor);
     }
 
+    public static <IN, OUT> Extractor<IN, OUT> nullSafeFluentTraverse(IN startingStructure, Function<IN, OUT> firstExtractor) {
+        return NullSafeTraversalWithUnlimitedDepth.nullSafeFluentTraverse(startingStructure, firstExtractor);
+    }
+
 
 }

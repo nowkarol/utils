@@ -43,4 +43,8 @@ class NullSafeTraversalWithUnlimitedDepth {
         return Optional.ofNullable(startingStructure)
             .map(extractor.getExtractingFunction());
     }
+
+    public static <IN, OUT> Extractor<IN, OUT> nullSafeFluentTraverse(IN startingStructure, Function<IN, OUT> firstExtractor) {
+        return Extractor.create(startingStructure, firstExtractor);
+    }
 }
