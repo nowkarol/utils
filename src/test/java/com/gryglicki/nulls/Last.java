@@ -6,7 +6,8 @@ public class Last {
   Last(String message) {
     this.message = message;
   }
-  public String toString(){
+
+  public String toString() {
     return message;
   }
 }
