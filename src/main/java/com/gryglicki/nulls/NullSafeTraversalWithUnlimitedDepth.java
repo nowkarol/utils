@@ -37,6 +37,9 @@ class NullSafeTraversalWithUnlimitedDepth {
     }
 
     public static <IN, OUT> Optional<OUT> nullSafeTraverseWithUnlimitedDepth(IN startingStructure, Extractor<IN, OUT> extractor) {
+        if (extractor == null){
+            throw new IllegalArgumentException("Non empty extractor have to be provided.");
+        }
         return Optional.ofNullable(startingStructure)
             .map(extractor.getExtractingFunction());
     }

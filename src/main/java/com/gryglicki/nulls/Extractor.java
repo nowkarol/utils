@@ -1,5 +1,6 @@
 package com.gryglicki.nulls;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 class Extractor<IN, CURRENT_LEVEL_OUT> {
@@ -9,14 +10,14 @@ class Extractor<IN, CURRENT_LEVEL_OUT> {
     this.extractingFunction = extractingFunction;
   }
 
-  public static <IN, CURRENT_LEVEL_OUT> Extractor<IN, CURRENT_LEVEL_OUT> firstLevel(Function<IN, CURRENT_LEVEL_OUT> firstLevelExtractingFunction){
+  public static <IN, CURRENT_LEVEL_OUT> Extractor<IN, CURRENT_LEVEL_OUT> create(Function<IN, CURRENT_LEVEL_OUT> firstLevelExtractingFunction){
     validateNotNull(firstLevelExtractingFunction);
     return new Extractor(firstLevelExtractingFunction);
   }
 
   public <NEXT_LEVEL> Extractor<IN, NEXT_LEVEL> nextLevel(Function<CURRENT_LEVEL_OUT, NEXT_LEVEL> nextExtractor){
     validateNotNull(nextExtractor);
-    return new Extractor (extractingFunction.andThen(nextExtractor));
+    return new Extractor (nullSafeAndThen(nextExtractor));
   }
 
   Function<IN, CURRENT_LEVEL_OUT> getExtractingFunction() {
@@ -25,7 +26,18 @@ class Extractor<IN, CURRENT_LEVEL_OUT> {
 
   private static void validateNotNull(Function<?,?> function) {
     if (function == null){
-      throw new IllegalArgumentException("Non empty extractors list have to be provided.");
+      throw new IllegalArgumentException("Non empty extractor function have to be provided.");
     }
+  }
+
+  private <NEXT_LEVEL> Function<IN, NEXT_LEVEL> nullSafeAndThen(Function<CURRENT_LEVEL_OUT, NEXT_LEVEL> after) {
+    Objects.requireNonNull(after);
+    return (IN in) -> {
+      CURRENT_LEVEL_OUT apply = extractingFunction.apply(in);
+      if (apply == null){
+        return null;
+      }
+      return after.apply(apply);
+    };
   }
 }

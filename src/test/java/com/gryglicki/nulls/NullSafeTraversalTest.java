@@ -3,6 +3,7 @@ package com.gryglicki.nulls;
 import org.junit.Test;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 import static com.gryglicki.nulls.NullSafeTraversal.nullSafeTraverse;
 import static org.junit.Assert.assertFalse;
@@ -30,7 +31,7 @@ public class NullSafeTraversalTest {
     {
         //Given - null mapper
         //When
-        nullSafeTraverse(new Object(), null);
+        nullSafeTraverse(new Object(), (Function)null);
         //Then - Exception
     }
 

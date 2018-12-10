@@ -36,5 +36,9 @@ public class NullSafeTraversal {
         return nullSafeTraverseWithUnlimitedDepth(startingStructure, extractor1, extractor2);
     }
 
+    public static <IN, OUT> Optional<OUT> nullSafeTraverse(IN startingStructure, Extractor<IN, OUT> extractor) {
+        return nullSafeTraverseWithUnlimitedDepth(startingStructure, extractor);
+    }
+
 
 }
