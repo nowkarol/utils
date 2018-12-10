@@ -35,4 +35,9 @@ class NullSafeTraversalWithUnlimitedDepth {
         }
         return (Optional<OUT>) intermediate;
     }
+
+    public static <IN, OUT> Optional<OUT> nullSafeTraverseWithUnlimitedDepth(IN startingStructure, Extractor<IN, OUT> extractor) {
+        return Optional.ofNullable(startingStructure)
+            .map(extractor.getExtractingFunction());
+    }
 }
