@@ -1,6 +1,7 @@
 package com.gryglicki.nulls;
 
 
+import com.gryglicki.nulls.testClasses.Last;
 import com.gryglicki.nulls.testClasses.Second;
 import com.gryglicki.nulls.testClasses.Structure;
 import com.gryglicki.nulls.testClasses.Third;

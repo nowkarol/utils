@@ -1,9 +1,9 @@
-package com.gryglicki.nulls;
+package com.gryglicki.nulls.testClasses;
 
 public class Last {
   private final String message;
 
-  Last(String message) {
+  public Last(String message) {
     this.message = message;
   }
 

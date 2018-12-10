@@ -1,7 +1,5 @@
 package com.gryglicki.nulls.testClasses;
 
-import com.gryglicki.nulls.Last;
-
 public class Third {
   private Last last;
 
