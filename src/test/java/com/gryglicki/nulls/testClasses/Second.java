@@ -1,10 +1,10 @@
-package com.gryglicki.nulls;
+package com.gryglicki.nulls.testClasses;
 
-class Second {
+public class Second {
   private Third third;
   private ThirdSubclass thirdSubclass;
 
-  Second(Third third, ThirdSubclass thirdSubclass) {
+  public Second(Third third, ThirdSubclass thirdSubclass) {
     this.third = third;
     this.thirdSubclass = thirdSubclass;
   }
@@ -13,11 +13,11 @@ class Second {
     this(third, null);
   }
 
-  Third getThird() {
+  public Third getThird() {
     return third;
   }
 
-  ThirdSubclass getThirdSubclass() {
+  public ThirdSubclass getThirdSubclass() {
     return thirdSubclass;
   }
 }

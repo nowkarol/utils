@@ -1,6 +1,11 @@
 package com.gryglicki.nulls;
 
 
+import com.gryglicki.nulls.testClasses.Second;
+import com.gryglicki.nulls.testClasses.Structure;
+import com.gryglicki.nulls.testClasses.Third;
+import com.gryglicki.nulls.testClasses.ThirdSubclass;
+
 import org.junit.Test;
 
 import java.util.Optional;
@@ -25,6 +30,7 @@ public class ExtractorTest {
     //then
     assertSame(last.toString(), "Works fine");
   }
+
 
   @Test
   public void shouldAllowLiskovSubclassSubstitution() {
@@ -66,38 +72,27 @@ public class ExtractorTest {
   @Test
   public void shouldReturnEmptyForNullTraversedReference() {
     //Given
-    TestClass startingObject = new TestClass(null);
+    Structure startingObject = new Structure(null);
     //When
-    Optional<TestClass> result = Extractor.create(startingObject, TestClass::getReference).extract();
+    Optional<Second> result = Extractor.create(startingObject, Structure::getSecond).extract();
     //Then
     assertFalse(result.isPresent());
   }
 
-
-  @Test
-  public void shouldReturnValueForTraversedReference() {
-    //Given
-    TestClass expectedResult = new TestClass(null);
-    TestClass startingObject = new TestClass(expectedResult);
-    //When
-    Optional<TestClass> result = Extractor.create(startingObject, TestClass::getReference).extract();
-    //Then
-    assertSame(expectedResult, result.get());
-  }
-
-
   @Test
   public void shouldReturnValueForDeepTraversedReference() {
-    //Given
-    TestClass expectedResult = new TestClass(null);
-    TestClass referencedObject = new TestClass(expectedResult);
-    TestClass startingObject = new TestClass(referencedObject);
-    //When
-    Optional<TestClass> result = Extractor.create(startingObject, TestClass::getReference)
-        .nextLevel(TestClass::getReference)
+    //given
+    Structure structure = new Structure(new Second(null));
+
+    // when
+    Optional<Last> last = Extractor.create(structure, Structure::getSecond)
+        .nextLevel(Second::getThird)
+        .nextLevel(Third::getLast)
         .extract();
-    //Then
-    assertSame(expectedResult, result.get());
+
+
+    //then
+    assertSame(last, Optional.empty());
   }
 
 }
